@@ -5,9 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
-    
-    <script src="script.js"></script>
+    <div id="app">
+       <div class="startPage">
+           <input type="text" class="search" placeholder="Search">
+           <div class="startPage__tasks"></div>
+           <div class="btn">
+               <button class="btn btn__add" v-on:click="isVisibleAddModal = true">Добавить</button>
+               <button class="btn btn__delete">Удалить</button>
+           </div>
+       </div>
+       <div class="modalAddTask" v-if="isVisibleAddModal">
+           <input type="text" class="headerInput" placeholder="Ввести заголовок">
+           <input type="text" class="inputTaskDescription" placeholder="Ввести краткое описание задачи">
+           <div class="btn">
+               <button class="btn btn__addTask">Добавить</button>
+               <button class="btn btn__canselTask" v-on:click="isVisibleAddModal = false">Отмена</button>
+           </div>
+        </div>
+    </div>
+
+
+<script>
+
+const app = new Vue({
+    el: '#app',
+    data: {
+        isVisibleAddModal:false
+    },
+
+    methods: {
+
+    },
+})
+
+</script>
+
+
 </body>
 </html>
