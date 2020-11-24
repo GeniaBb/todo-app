@@ -12,19 +12,22 @@
        <div class="startPage">
            <input type="text" class="search" placeholder="Search">
            <div class="startPage__tasks"></div>
-           <div class="btn">
-               <button class="btn btn__add" v-on:click="isVisibleAddModal = true">Добавить</button>
-               <button class="btn btn__delete">Удалить</button>
+           <div class="btns">
+               <button class="btn btn--add" v-on:click="isVisibleAddModal = true">Добавить</button>
+               <button class="btn btn--delete">Удалить</button>
            </div>
        </div>
+       <div class="blurEffect" v-if="isVisibleAddModal"></div>
        <div class="modalAddTask" v-if="isVisibleAddModal">
-           <input type="text" class="headerInput" placeholder="Ввести заголовок">
-           <input type="text" class="inputTaskDescription" placeholder="Ввести краткое описание задачи">
-           <div class="btn">
-               <button class="btn btn__addTask">Добавить</button>
-               <button class="btn btn__canselTask" v-on:click="isVisibleAddModal = false">Отмена</button>
-           </div>
+        <div class="modalAddTask__inputs">
+            <input type="text" class="headerInput" placeholder="Ввести заголовок">
+            <input type="text" class="inputTaskDescription" placeholder="Ввести краткое описание задачи">
         </div>
+        <div class="btns">
+            <button class="btn btn--addTask">Добавить</button>
+            <button class="btn btn--canselTask" v-on:click="isVisibleAddModal = false">Отмена</button>
+        </div>
+     </div>
     </div>
 
 
@@ -37,7 +40,7 @@ const app = new Vue({
     },
 
     methods: {
-
+        
     },
 })
 
