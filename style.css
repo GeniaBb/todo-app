@@ -35,6 +35,52 @@
 .startPage .search:focus::-webkit-input-placeholder {
   color: transparent;
 }
+.startPage .task {
+  min-height: 81px;
+  margin-top: 3px;
+  padding: 0;
+  background-color: #34495E;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+.startPage .task .text__header {
+  width: calc(100% - 31px);
+}
+.startPage .task .text__header h2 {
+  font-size: 24px;
+  line-height: 28.13px;
+  text-align: left;
+}
+.startPage .task .text__header h3 {
+  font-size: 14px;
+  line-height: 16.41px;
+  text-align: left;
+}
+.startPage .task .custom-cbx {
+  width: 31px;
+  height: 31px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  margin: 25px 17px 25px 0;
+  cursor: pointer;
+}
+.startPage .task.active .text__header h2, .startPage .task.active .text__header h3 {
+  color: #1ABC9C;
+}
+.startPage .task.active .custom-cbx {
+  background-color: #1ABC9C;
+}
+.startPage .task.active .custom-cbx .checkImg {
+  background-image: url("./img/Check.svg");
+  background-repeat: no-repeat;
+  width: 17px;
+  height: 13px;
+  margin-left: 7px;
+  margin-top: 8px;
+}
 .startPage .btn {
   width: 100%;
   height: 44px;
@@ -140,6 +186,55 @@
   border-style: none;
   outline: none;
   font-size: 18px;
+}
+
+.modalDeleteTask {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 365px;
+  height: 205px;
+  background-color: #2C3E50;
+  border-radius: 10px;
+}
+.modalDeleteTask h2 {
+  font-size: 24px;
+  line-height: 28.13px;
+  text-align: center;
+  width: 332px;
+  height: 56px;
+}
+.modalDeleteTask .btn {
+  width: 100%;
+  height: 44px;
+  border-radius: 10px;
+  border-style: none;
+  outline: none;
+  font-size: 18px;
+  line-height: 21.09px;
+  cursor: pointer;
+}
+.modalDeleteTask .btn--deleteTask {
+  width: 144px;
+  background-color: #E74C3C;
+  border-style: none;
+  outline: none;
+  font-size: 18px;
+  margin-right: 22px;
+}
+.modalDeleteTask .btn--canselTask {
+  width: 144px;
+  background-color: #FFFFFF;
+  color: #1ABC9C;
+  border-style: none;
+  outline: none;
+  font-size: 18px;
+  margin-left: 22px;
 }
 
 /*# sourceMappingURL=style.css.map */

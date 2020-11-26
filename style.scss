@@ -47,6 +47,67 @@ $placeholdersColor: rgba(255, 255, 255, 0.8);
         
     }
 
+    .task {
+        min-height: 81px;
+        margin-top: 3px;
+        padding: 0;
+        background-color: $colorTasks;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 14px;
+        padding-right: 14px;
+
+        .text {
+
+            &__header {
+                width: calc(100% - 31px);
+    
+                h2 {
+                    font-size: 24px;
+                    line-height: 28.13px;
+                    text-align: left;
+                }
+        
+                h3 {
+                    font-size: 14px;
+                    line-height: 16.41px;
+                    text-align: left;
+                }
+            }
+        }
+
+        .custom-cbx {
+            width: 31px;
+            height: 31px;
+            background-color: $colorBtnCancelingAndText;
+            border-radius: 50%;
+            margin: 25px 17px 25px 0;
+            cursor: pointer;
+
+        }
+
+        &.active {
+
+            .text__header h2, .text__header h3{
+                color: $colorForMultimedia;
+            }
+
+            .custom-cbx {
+                background-color: $colorForMultimedia;
+
+                .checkImg {
+                    background-image: url('./img/Check.svg');
+                    background-repeat: no-repeat;
+                    width: 17px;
+                    height: 13px;
+                    margin-left: 7px;
+                    margin-top: 8px;
+                }
+            }
+        }
+    }
+
     .btn {
         width: 100%;
         height: 44px;
@@ -162,6 +223,59 @@ $placeholdersColor: rgba(255, 255, 255, 0.8);
             border-style: none;
             outline: none;
             font-size: 18px;
+        }
+    }
+}
+
+.modalDeleteTask {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 365px;
+    height: 205px;
+    background-color: $mainPageColor;
+    border-radius: 10px;
+
+    h2 {
+        font-size: 24px;
+        line-height: 28.13px;
+        text-align: center;
+        width: 332px;
+        height: 56px;
+    }
+
+    .btn {
+        width: 100%;
+        height: 44px;
+        border-radius: 10px;
+        border-style: none;
+        outline: none;
+        font-size: 18px;
+        line-height: 21.09px;
+        cursor: pointer;
+
+        &--deleteTask {
+            width: 144px;
+            background-color: $colorBtnDelete;
+            border-style: none;
+            outline: none;
+            font-size: 18px;
+            margin-right: 22px;
+        }
+
+        &--canselTask {
+            width: 144px;
+            background-color: $colorBtnCancelingAndText;
+            color: $colorForMultimedia;
+            border-style: none;
+            outline: none;
+            font-size: 18px;
+            margin-left: 22px;
         }
     }
 }
