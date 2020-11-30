@@ -35,8 +35,20 @@
 .startPage .search:focus::-webkit-input-placeholder {
   color: transparent;
 }
+.startPage__tasks {
+  height: 260px;
+  overflow-y: auto;
+}
+.startPage__tasks::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2C3E50;
+}
+.startPage__tasks::-webkit-scrollbar-thumb {
+  background-color: #1ABC9C;
+  border-radius: 5px;
+}
 .startPage .task {
-  min-height: 81px;
+  height: 81px;
   margin-top: 3px;
   padding: 0;
   background-color: #34495E;
@@ -77,9 +89,15 @@
   background-image: url("./img/Check.svg");
   background-repeat: no-repeat;
   width: 17px;
-  height: 13px;
+  height: 14px;
   margin-left: 7px;
   margin-top: 8px;
+}
+.startPage .btns {
+  height: 80px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 .startPage .btn {
   width: 100%;

@@ -11,13 +11,14 @@
     <div id="app">
        <div class="startPage">
            <input type="text" class="search" placeholder="Search">
-           <div class="startPage__tasks"></div>
-           <div class="task" v-for="task in tasks" v-bind:class="{ active: task.done }">
-               <div class="text text__header">
-                   <h2>{{ task.title }}</h2>
-                   <h3>{{ task.description }}</h3>
+           <div class="startPage__tasks">
+               <div class="task" v-for="task in tasks" v-bind:class="{ active: task.done }">
+                   <div class="text text__header">
+                       <h2>{{ task.title }}</h2>
+                       <h3>{{ task.description }}</h3>
+                   </div>
+                   <div class="custom-cbx" v-on:click="task.done = !task.done"><div class="checkImg"></div></div>
                </div>
-               <div class="custom-cbx" v-on:click="task.done = !task.done"><div class="checkImg"></div></div>
            </div>
            <div class="btns">
                <button class="btn btn--add" v-on:click="isVisibleAddModal = true">Добавить</button>
@@ -27,11 +28,11 @@
        <div class="blurEffect" v-if="isVisibleAddModal || isVisibleDeleteModal"></div>
        <div class="modalAddTask" v-if="isVisibleAddModal">
             <div class="modalAddTask__inputs">
-                <input type="text" class="headerInput" placeholder="Ввести заголовок">
-                <input type="text" class="inputTaskDescription" placeholder="Ввести краткое описание задачи">
+                <input type="text" class="headerInput" v-model="newTask.title" placeholder="Ввести заголовок">
+                <input type="text" class="inputTaskDescription" v-model="newTask.description" placeholder="Ввести краткое описание задачи">
             </div>
             <div class="btns">
-                <button class="btn btn--addTask">Добавить</button>
+                <button class="btn btn--addTask" v-on:click="addTask">Добавить</button>
                 <button class="btn btn--canselTask" v-on:click="isVisibleAddModal = false">Отмена</button>
             </div>
         </div>
@@ -39,7 +40,7 @@
         <div class="modalDeleteTask" v-if="isVisibleDeleteModal">
             <h2>Вы уверены что хотите удалить выбранные задачи?</h2>
             <div class="btns">
-                <button class="btn btn--deleteTask">Добавить</button>
+                <button class="btn btn--deleteTask" v-on:click="deleteTask">Удалить</button>
                 <button class="btn btn--canselTask" v-on:click="isVisibleDeleteModal = false">Отмена</button>
             </div>
         </div>
@@ -53,6 +54,12 @@ const app = new Vue({
     data: {
         isVisibleAddModal:false,
         isVisibleDeleteModal: false,
+        newTask: {
+            id: null,
+            title: '',
+            description: '',
+            done: false
+        },
         tasks: [
             {
                 id: 1,
@@ -66,13 +73,37 @@ const app = new Vue({
                 title: 'Сходить в магазин',
                 description: 'Сходить в Пятёрочку за продуктами',
                 done: false
+            },
+            {
+                id: 3,
+                title: 'Купить кит-кат',
+                description: 'Купить тройной кит-кат для Лёши',
+                done: false
             }
         ],
     },
-
     methods: {
-        Click: function() {
-            this.done == true
+        deleteTask() {
+            const filteredTask = this.tasks.filter(task => task.done === false);
+            this.tasks = filteredTask;
+            this.isVisibleDeleteModal = false;
+        },
+
+        addTask() {
+            const newTask = this.newTask;
+            if (newTask.title.length && newTask.description.length) {
+                const max = Math.max(...this.tasks.map(task => task.id));
+                newTask.id = max + 1;
+                this.tasks.push(newTask);
+                this.newTask = {
+                id: null,
+                title: '',
+                description: '',
+                done: false
+                }
+                this.isVisibleAddModal = false;
+            }
+            
         }
     },
 })

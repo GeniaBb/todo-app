@@ -47,8 +47,23 @@ $placeholdersColor: rgba(255, 255, 255, 0.8);
         
     }
 
+    &__tasks {
+        height: 260px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            background-color: $mainPageColor;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $colorForMultimedia;
+            border-radius: 5px;
+        }
+    }
+
     .task {
-        min-height: 81px;
+        height: 81px;
         margin-top: 3px;
         padding: 0;
         background-color: $colorTasks;
@@ -100,12 +115,19 @@ $placeholdersColor: rgba(255, 255, 255, 0.8);
                     background-image: url('./img/Check.svg');
                     background-repeat: no-repeat;
                     width: 17px;
-                    height: 13px;
+                    height: 14px;
                     margin-left: 7px;
                     margin-top: 8px;
                 }
             }
         }
+    }
+
+    .btns {
+        height: 80px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
     }
 
     .btn {
