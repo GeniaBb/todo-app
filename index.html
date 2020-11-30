@@ -12,7 +12,7 @@
        <div class="startPage">
            <input type="text" class="search" placeholder="Search">
            <div class="startPage__tasks">
-               <div class="task" v-for="task in tasks" v-bind:class="{ active: task.done }">
+               <div class="task" v-for="task in tasks" v-bind:class="{ active: task.done }"  v-on:click="editTask(task)">
                    <div class="text text__header">
                        <h2>{{ task.title }}</h2>
                        <h3>{{ task.description }}</h3>
@@ -25,7 +25,9 @@
                <button class="btn btn--delete" v-on:click="isVisibleDeleteModal = true">Удалить</button>
            </div>
        </div>
-       <div class="blurEffect" v-if="isVisibleAddModal || isVisibleDeleteModal"></div>
+
+       <div class="blurEffect" v-if="isVisibleBlur"></div>
+
        <div class="modalAddTask" v-if="isVisibleAddModal">
             <div class="modalAddTask__inputs">
                 <input type="text" class="headerInput" v-model="newTask.title" placeholder="Ввести заголовок">
@@ -44,6 +46,17 @@
                 <button class="btn btn--canselTask" v-on:click="isVisibleDeleteModal = false">Отмена</button>
             </div>
         </div>
+
+        <div class="modalTaskEditing" v-if="isVisibleEditingModal">
+            <div class="modalTaskEditing__inputs">
+                <input type="text" class="headerInput" placeholder="Ввести заголовок">
+                <input type="text" class="inputTaskDescription"  placeholder="Ввести краткое описание задачи">
+            </div>
+            <div class="btns">
+                <button class="btn btn--addTask">Сохранить</button>
+                <button class="btn btn--canselTask" v-on:click="isVisibleEditingModal = false">Отмена</button>
+            </div>
+        </div>
     </div>
 
 
@@ -54,6 +67,7 @@ const app = new Vue({
     data: {
         isVisibleAddModal:false,
         isVisibleDeleteModal: false,
+        isVisibleEditingModal: false,
         newTask: {
             id: null,
             title: '',
@@ -82,11 +96,20 @@ const app = new Vue({
             }
         ],
     },
+    computed: {
+        isVisibleBlur() {
+            return this.isVisibleAddModal || this.isVisibleDeleteModal || this.isVisibleEditingModal;
+        }
+    },
     methods: {
         deleteTask() {
             const filteredTask = this.tasks.filter(task => task.done === false);
             this.tasks = filteredTask;
             this.isVisibleDeleteModal = false;
+        },
+
+        editTask(task) {
+            console.log(task)
         },
 
         addTask() {
@@ -102,8 +125,7 @@ const app = new Vue({
                 done: false
                 }
                 this.isVisibleAddModal = false;
-            }
-            
+            } 
         }
     },
 })
